@@ -1,0 +1,23 @@
+{
+  "name": "redis-om-express",
+  "version": "1.0.0",
+  "description": "Started code for Redis OM + Express workshop.",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Guy Royse <guy@guyroyse.com> (http://guyroyse.com/)",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "redis": "^4.0.4",
+    "redis-om": "^0.2.0",
+    "swagger-ui-express": "^4.3.0",
+    "yamljs": "^0.3.0"
+  }
+}

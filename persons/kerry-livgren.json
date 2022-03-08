@@ -1,0 +1,18 @@
+{
+  "firstName": "Kerry",
+  "lastName": "Livgren",
+  "age": 72,
+  "verified": false,
+  "location": {
+    "longitude": -95.689,
+    "latitude": 39.056
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "poetry",
+    "philosophy",
+    "songwriting",
+    "guitar"
+  ],
+  "personalStatement": "All we are is dust in the wind."
+}

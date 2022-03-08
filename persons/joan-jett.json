@@ -1,0 +1,17 @@
+{
+  "firstName": "Joan",
+  "lastName": "Jett",
+  "age": 63,
+  "verified": false,
+  "location": {
+    "longitude": -75.273,
+    "latitude": 40.003
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "singing",
+    "guitar",
+    "black eyeliner"
+  ],
+  "personalStatement": "I love rock n' roll so put another dime in the jukebox, baby."
+}

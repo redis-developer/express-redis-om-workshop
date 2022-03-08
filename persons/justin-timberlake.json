@@ -1,0 +1,17 @@
+{
+  "firstName": "Justin",
+  "lastName": "Timberlake",
+  "age": 41,
+  "verified": true,
+  "location": {
+    "longitude": -89.971,
+    "latitude": 35.118
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "singing",
+    "dancing",
+    "half-time shows"
+  ],
+  "personalStatement": "What goes around comes all the way back around."
+}

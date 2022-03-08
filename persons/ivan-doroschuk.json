@@ -1,0 +1,17 @@
+{
+  "firstName": "Ivan",
+  "lastName": "Doroschuk",
+  "age": 64,
+  "verified": true,
+  "location": {
+    "longitude": -88.273,
+    "latitude": 40.115
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "singing",
+    "dancing",
+    "friendship"
+  ],
+  "personalStatement": "We can dance if we want to. We can leave your friends behind. 'Cause your friends don't dance and if they don't dance well they're no friends of mine."
+}

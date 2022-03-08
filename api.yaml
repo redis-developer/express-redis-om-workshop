@@ -1,0 +1,446 @@
+openapi: 3.0.0
+info:
+  title: Redis OM and Express Skeleton API
+  description: >
+    A simple sample API that shows assorted ways to use Redis OM for
+    Node.js with an Express applciation.
+  version: 1.0.0
+
+paths:
+  /person:
+    put:
+      tags:
+        - Person
+      description: Creates a new person with the specified attributes
+      summary: Create person
+      operationId: createPerson
+      requestBody:
+        description: person
+        required: true
+        content:
+          application/json:
+            schema:
+              title: person
+              allOf:
+                - $ref: "#/components/schemas/person"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/person_id"
+                  - $ref: "#/components/schemas/person"
+
+  /person/{id}:
+    get:
+      tags:
+        - Person
+      description: Gets a specific person by ID
+      summary: Get person
+      operationId: fetchPerson
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/person_id"
+                  - $ref: "#/components/schemas/person"
+    post:
+      tags:
+        - Person
+      description: Updates a specific person
+      summary: Update person
+      operationId: updatePerson
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        description: person
+        required: true
+        content:
+          application/json:
+            schema:
+              title: person
+              allOf:
+                - $ref: "#/components/schemas/person"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/person_id"
+                  - $ref: "#/components/schemas/person"
+    delete:
+      tags: 
+         - Person
+      description: Deletes the person by ID
+      summary: Delete person
+      operationId: removePerson
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/person_id"
+
+  /persons/all:
+    get:
+      tags:
+        - Search
+      description: Gets all the persons
+      summary: Get all persons
+      operationId: fetchAllPersons
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /persons/by-last-name/{last_name}:
+    get:
+      tags:
+        - Search
+      description: Gets persons by last name
+      summary: Get persons by last name
+      operationId: fetchPersonsByLastName
+      parameters:
+        - $ref: "#/components/parameters/last_name"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /persons/old-enough-to-drink-in-america:
+    get:
+      tags:
+        - Search
+      description: Gets persons that are 21+
+      summary: Get persons of drinking age
+      operationId: fetchDrinkingPersons
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /persons/non-verified:
+    get:
+      tags:
+        - Search
+      description: Gets persons that are *not* verified
+      summary: Get non-verified persons
+      operationId: fetchNonVerifiedPersons
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /persons/verified-drinkers-with-last-name/{last_name}:
+    get:
+      tags:
+        - Search
+      description: Gets persons that are verified, 21+, and have a matching last name
+      summary: Get oddly specific set of persons
+      operationId: fetchVerifiedDrinkersByLastName
+      parameters:
+        - $ref: "#/components/parameters/last_name"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /persons/with-statement-containing/{text}:
+    get:
+      tags:
+        - Search
+      description: Gets persons with personal statement matching the offered text
+      summary: Get persons with words matching personal statement
+      operationId: fetchPersonsWithStatement
+      parameters:
+        - $ref: "#/components/parameters/text"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /persons/near/{longitude},{latitude}/radius/{radius}:
+    get:
+      tags:
+        - Search
+      description: Gets persons near a location
+      summary: Get persons near location
+      operationId: fetchPersonsNearLocation
+      parameters:
+        - $ref: "#/components/parameters/longitude"
+        - $ref: "#/components/parameters/latitude"
+        - $ref: "#/components/parameters/radius"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/persons"
+
+  /person/{id}/location/{longitude},{latitude}:
+    patch:
+      tags: 
+        - Location
+      description: Updates the person's location
+      summary: Update person's location
+      operationId: updatePersonLocation
+      parameters:
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/longitude"
+        - $ref: "#/components/parameters/latitude"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/person_id"
+                  - $ref: "#/components/schemas/person_location"
+
+components:
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The ID of the person to interact with
+      schema:
+        $ref: "#/components/schemas/id"
+    last_name:
+      name: last_name
+      in: path
+      required: true
+      description: The last name of the person
+      schema:
+        $ref: "#/components/schemas/last_name"
+    longitude:
+      name: longitude
+      in: path
+      required: true
+      description: The longitude status of the person
+      schema:
+        $ref: "#/components/schemas/coordinate"
+    latitude:
+      name: latitude
+      in: path
+      required: true
+      description: The latitude status of the person
+      schema:
+        $ref: "#/components/schemas/coordinate"
+    radius:
+      name: radius
+      in: path
+      required: true
+      description: A radius for a location search in miles
+      schema:
+        $ref: "#/components/schemas/radius"
+    text:
+      name: text
+      in: path
+      required: true
+      description: Text to search for
+      schema:
+        $ref: "#/components/schemas/text"
+
+  schemas:
+    person_id:
+      type: object
+      properties:
+        entityId:
+          $ref: "#/components/schemas/id"
+
+    persons:
+      type: array
+      items:
+        $ref: "#/components/schemas/person"
+
+    person:
+      allOf:
+        - $ref: "#/components/schemas/person_full_name"
+        - $ref: "#/components/schemas/person_age"
+        - $ref: "#/components/schemas/person_verified"
+        - $ref: "#/components/schemas/person_location"
+        - $ref: "#/components/schemas/person_skills"
+        - $ref: "#/components/schemas/person_statement"
+
+    person_full_name:
+      allOf:
+        - $ref: "#/components/schemas/person_first_name"
+        - $ref: "#/components/schemas/person_last_name"
+
+    person_first_name:
+      type: object
+      properties:
+        firstName:
+          $ref: "#/components/schemas/first_name"
+
+    person_last_name:
+      type: object
+      properties:
+        lastName:
+          $ref: "#/components/schemas/last_name"
+
+    person_age:
+      type: object
+      properties:
+        age:
+          $ref: "#/components/schemas/age"
+
+    person_verified:
+      type: object
+      properties:
+        verified:
+          $ref: "#/components/schemas/verified"
+
+    person_location:
+      allOf:
+        - type: object
+          properties:
+            location:
+              $ref: "#/components/schemas/location"
+        - $ref: "#/components/schemas/person_location_updated"
+
+    person_location_updated:
+      type: object
+      properties:
+        locationUpdated:
+          $ref: "#/components/schemas/location_updated"
+
+    person_skills:
+      type: object
+      properties:
+        skills:
+          $ref: "#/components/schemas/skills"
+
+    person_statement:
+      type: object
+      properties:
+        personalStatement:
+          $ref: "#/components/schemas/statement"
+
+    id:
+      description: The ID of the person
+      type: string
+      example: 01FX8N39YVZRCQNAW0R5T53H5T
+
+    first_name:
+      description: The given name of the person
+      type: string
+      example: Rupert
+
+    last_name:
+      description: The surname of the person
+      type: string
+      example: Holmes
+
+    age:
+      description: The age of the person in years
+      type: integer
+      format: int32
+      example: 75
+
+    verified:
+      description: If the person has been verified
+      type: boolean
+      example: false
+
+    location:
+      description: The location of the person on the globe
+      $ref: "#/components/schemas/geo"
+
+    location_updated:
+      description: >
+        The date and time when the user last updated their location
+        on the globe
+      type: string
+      format: date-time
+      example: 2022-03-01T12:34:56.123Z
+
+    skills:
+      description: A list of skills that the person possesses
+      type: array
+      items:
+        type: string
+        example: dancing
+      example:
+        - singing
+        - songwriting
+        - playwriting
+
+    statement:
+      description: A statement about the person
+      type: string
+      example: I like piña coladas and walks in the rain
+
+    text:
+      description: Text to search for in human-readable text
+      type: string
+      example: walk
+
+    geo:
+      type: object
+      required:
+        - longitude
+        - latitude
+      properties:
+        longitude:
+          description: The longitudinal position on the globe
+          $ref: "#/components/schemas/coordinate"
+          example: -2.518
+        latitude:
+          description: The latitudinal position on the globe
+          $ref: "#/components/schemas/coordinate"
+          example: 53.259
+
+    coordinate:
+      description: >
+        The longitudinal or latitudinal position on the globe
+      type: number
+      format: float
+      example: 45.678
+
+    radius:
+      description: A radius, in miles
+      type: integer
+      format: int32
+      example: 20

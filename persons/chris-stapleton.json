@@ -1,0 +1,17 @@
+{
+  "firstName": "Chris",
+  "lastName": "Stapleton",
+  "age": 43,
+  "verified": true,
+  "location": {
+    "longitude": -84.495,
+    "latitude": 38.030
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "singing",
+    "football",
+    "coal mining"
+  ],
+  "personalStatement": "There are days that I can walk around like I'm alright. And I pretend to wear a smile on my face. And I could keep the pain from comin' out of my eyes. But sometimes, sometimes, sometimes I cry."
+}

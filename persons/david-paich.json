@@ -1,0 +1,17 @@
+{
+  "firstName": "David",
+  "lastName": "Paich",
+  "age": 67,
+  "verified": false,
+  "location": {
+    "longitude": -118.25,
+    "latitude": 34.050
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "singing",
+    "keyboard",
+    "blessing"
+  ],
+  "personalStatement": "I seek to cure what's deep inside frightened of this thing that I've become"
+}

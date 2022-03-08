@@ -1,0 +1,17 @@
+{
+  "firstName": "Rupert",
+  "lastName": "Holmes",
+  "age": 75,
+  "verified": true,
+  "location": {
+    "longitude": -2.518,
+    "latitude": 53.259
+  },
+  "locationUpdated" : "2022-01-01T12:00:00.000Z",
+  "skills": [
+    "singing",
+    "songwriting",
+    "playwriting"
+  ],
+  "personalStatement": "I like piña coladas and taking walks in the rain."
+}
