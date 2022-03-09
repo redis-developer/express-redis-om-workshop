@@ -11,7 +11,10 @@ router.put('/', async (req, res) => {
 })
 
 // READ
-router.get('/:id', async (req, res) => {})
+router.get('/:id', async (req, res) => {
+  const person = await personRepository.fetch(req.params.id)
+  res.send(person)
+})
 
 // UPDATE
 router.post('/:id', async (req, res) => {})
