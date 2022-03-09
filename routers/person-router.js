@@ -5,7 +5,10 @@ import { personRepository } from '../om/person.js'
 export const router = Router()
 
 // CREATE
-router.put('/', async (req, res) => {})
+router.put('/', async (req, res) => {
+  const person = await personRepository.createAndSave(req.body)
+  res.send(person)
+})
 
 // READ
 router.get('/:id', async (req, res) => {})
