@@ -44,3 +44,20 @@ router.get('/with-statement-containing/:text', async (req, res) => {
       .return.all()
   res.send(persons)
 })
+
+router.get('/near/:lng,:lat/radius/:radius', async (req, res) => {
+  const longitude = Number(req.params.lng)
+  const latitude = Number(req.params.lat)
+  const radius = Number(req.params.radius)
+
+  const persons = await personRepository.search()
+    .where('location')
+      .inRadius(circle => circle
+          .longitude(longitude)
+          .latitude(latitude)
+          .radius(radius)
+          .miles)
+        .return.all()
+
+  res.send(persons)
+})
