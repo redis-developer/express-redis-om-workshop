@@ -15,3 +15,9 @@ router.get('/by-last-name/:lastName', async (req, res) => {
     .where('lastName').equals(lastName).return.all()
   res.send(persons)
 })
+
+router.get('/old-enough-to-drink-in-america', async (req, res) => {
+  const persons = await personRepository.search()
+    .where('age').gte(21).return.all()
+  res.send(persons)
+})
