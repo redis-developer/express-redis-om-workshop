@@ -16,3 +16,5 @@ const personSchema = new Schema(Person, {
 })
 
 export const personRepository = client.fetchRepository(personSchema)
+
+await personRepository.createIndex()
