@@ -21,3 +21,9 @@ router.get('/old-enough-to-drink-in-america', async (req, res) => {
     .where('age').gte(21).return.all()
   res.send(persons)
 })
+
+router.get('/non-verified', async (req, res) => {
+  const persons = await personRepository.search()
+    .where('verified').is.not.true().return.all()
+  res.send(persons)
+})
