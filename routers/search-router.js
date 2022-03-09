@@ -27,3 +27,12 @@ router.get('/non-verified', async (req, res) => {
     .where('verified').is.not.true().return.all()
   res.send(persons)
 })
+
+router.get('/verified-drinkers-with-last-name/:lastName', async (req, res) => {
+  const lastName = req.params.lastName
+  const persons = await personRepository.search()
+    .where('verified').is.true()
+      .and('age').gte(21)
+      .and('lastName').equals(lastName).return.all()
+  res.send(persons)
+})
