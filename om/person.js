@@ -14,3 +14,5 @@ const personSchema = new Schema(Person, {
   skills: { type: 'string[]' },
   personalStatement: { type: 'text' }
 })
+
+export const personRepository = client.fetchRepository(personSchema)
