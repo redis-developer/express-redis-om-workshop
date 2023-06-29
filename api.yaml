@@ -8,7 +8,7 @@ info:
 
 paths:
   /person:
-    put:
+    post:
       tags:
         - Person
       description: Creates a new person with the specified attributes
@@ -51,7 +51,7 @@ paths:
                 allOf:
                   - $ref: "#/components/schemas/person_id"
                   - $ref: "#/components/schemas/person"
-    post:
+    put:
       tags:
         - Person
       description: Updates a specific person
