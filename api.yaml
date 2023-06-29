@@ -3,7 +3,7 @@ info:
   title: Redis OM and Express Skeleton API
   description: >
     A simple sample API that shows assorted ways to use Redis OM for
-    Node.js with an Express applciation.
+    Node.js with an Express application.
   version: 1.0.0
 
 paths:
